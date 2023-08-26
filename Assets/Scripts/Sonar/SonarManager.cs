@@ -94,7 +94,7 @@ public class SonarManager : MonoBehaviour
 		pingCamera.transform.position = Camera.main.transform.position;
 		ui.TransitionTerrainOverlay();
 		scanner.StartPing();
-		audioSource.PlayOneShot(sonarPingClip);
+		audioSource.PlayOneShot(sonarPingClip, MainSettings.sfxVolume);
 	}
 
 	public void CreateSonarTorpedo(GameObject worldTorpedo, bool fromEnemy = false)

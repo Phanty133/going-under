@@ -22,7 +22,7 @@ public class MainMenuManager : MonoBehaviour
 
 	public void PlayClick()
 	{
-		audioSource.PlayOneShot(clickClip);
+		audioSource.PlayOneShot(clickClip, MainSettings.sfxVolume);
 	}
 
 	public static void ManagerPlayClick()
