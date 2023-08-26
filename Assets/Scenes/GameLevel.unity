@@ -10623,7 +10623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed84f48b5a3fab3858d936ebbea86d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelPassedObj: {fileID: 0}
+  levelPassedObj: {fileID: 1313922755}
 --- !u!1 &1429504713
 GameObject:
   m_ObjectHideFlags: 0

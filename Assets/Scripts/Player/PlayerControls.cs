@@ -117,6 +117,10 @@ public class PlayerControls : MonoBehaviour
 				rigidbody2d.AddTorque(rot, ForceMode2D.Impulse);
 				sourceVolume = 1;
 			}
+
+			var position = transform.position;
+			position = new Vector3(Mathf.Clamp(position.x, -50f, 50f), Mathf.Clamp(position.y, -50f, 50f), position.z); // Make sure the player does not go outside the map
+			transform.position = position;
 		}
 
 		if (sourceVolume > 0)
