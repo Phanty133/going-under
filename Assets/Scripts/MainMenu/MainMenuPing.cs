@@ -122,7 +122,7 @@ public class MainMenuPing : MonoBehaviour
 		else if (delayTimer <= 0 && delayTimer != -1)
 		{
 			delayTimer = -1;
-			audioSource.PlayOneShot(pingAudio);
+			audioSource.PlayOneShot(pingAudio, MainSettings.sfxVolume);
 		}
 
 		if (pingAnimTimer > pingTime_s)

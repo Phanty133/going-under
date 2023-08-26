@@ -458,7 +458,7 @@ AudioSource:
   m_GameObject: {fileID: 58396329}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a14828489426a4b1cb19334b0267e6ad, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -839,7 +839,7 @@ AudioSource:
   m_GameObject: {fileID: 76735862}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a14828489426a4b1cb19334b0267e6ad, type: 2}
   m_audioClip: {fileID: 8300000, guid: 147214fba4040888886efadeec0d4552, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -2194,7 +2194,7 @@ AudioSource:
   m_GameObject: {fileID: 633619341}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 917c45cfc16526d5bb6a5e77df1c36ca, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -7588,6 +7588,7 @@ MonoBehaviour:
   healthIndicatorObj: {fileID: 878593976}
   moveClip: {fileID: 8300000, guid: 5255d200745cf83babbd2949c4eb5462, type: 3}
   inputControl: 1
+  lockBackwards: 1
 --- !u!114 &730308196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7627,7 +7628,7 @@ AudioSource:
   m_GameObject: {fileID: 730308191}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a14828489426a4b1cb19334b0267e6ad, type: 2}
   m_audioClip: {fileID: 8300000, guid: 5255d200745cf83babbd2949c4eb5462, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -11100,7 +11101,7 @@ AudioSource:
   m_GameObject: {fileID: 1666109228}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: a14828489426a4b1cb19334b0267e6ad, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

@@ -6,16 +6,23 @@ using UnityEngine.SceneManagement;
 public class MainMenuManager : MonoBehaviour
 {
 	public AudioClip clickClip;
+	public GameObject settingsMenu;
+	public GameObject mainMenu;
 	AudioSource audioSource;
 
 	private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
+		Time.timeScale = 1f;
+		LevelManager.ResetLevels();
+
+		settingsMenu.SetActive(false);
+		mainMenu.SetActive(true);
 	}
 
 	public void PlayClick()
 	{
-		audioSource.PlayOneShot(clickClip);
+		audioSource.PlayOneShot(clickClip, MainSettings.sfxVolume);
 	}
 
 	public static void ManagerPlayClick()
@@ -25,7 +32,7 @@ public class MainMenuManager : MonoBehaviour
 
 	public static void StartGame()
 	{
-		SceneManager.LoadScene("TestTestScene");
+		SceneManager.LoadScene("GameLevel");
 		ManagerPlayClick();
 	}
 
@@ -37,7 +44,9 @@ public class MainMenuManager : MonoBehaviour
 
 	public static void OpenOptions()
 	{
-		Debug.Log("choice is an illusion");
+		MainMenuManager mainMenuManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<MainMenuManager>();
+		mainMenuManager.settingsMenu.SetActive(true);
+		mainMenuManager.mainMenu.SetActive(false);
 		ManagerPlayClick();
 	}
 }

@@ -15,7 +15,7 @@ public class PauseManager : MonoBehaviour
 
 	public void PlayClick()
 	{
-		audioSource.PlayOneShot(clickClip);
+		audioSource.PlayOneShot(clickClip, MainSettings.sfxVolume);
 	}
 
 	public void OnPause()
