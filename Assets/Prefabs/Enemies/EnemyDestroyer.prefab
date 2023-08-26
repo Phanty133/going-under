@@ -106,6 +106,8 @@ MonoBehaviour:
   reportCooldown: 3
   searchCooldown: 10
   squad: -1
+  torpedoBase: {fileID: 8885103694915545989, guid: be3bb08a5b2e01d64abb4bfc4f9d3a81, type: 3}
+  fireCooldown: 10
 --- !u!195 &6887462324402752091
 NavMeshAgent:
   m_ObjectHideFlags: 0

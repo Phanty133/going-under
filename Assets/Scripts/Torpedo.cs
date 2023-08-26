@@ -10,6 +10,7 @@ public class Torpedo : MonoBehaviour
 	public float lifetime_s = 5f;
 	public AudioClip fireClip;
 	public GameObject explosionObj;
+	public bool enemyTorp = false;
 
 	Rigidbody2D rigidbody2d;
 	float lifeTimer = 0;
@@ -26,11 +27,15 @@ public class Torpedo : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+		if (!enemyTorp && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
 			Debug.Log("down");
 			BigBoom();
 			Destroy(other.gameObject);
+		} else if (other.gameObject.CompareTag("Player"))
+		{
+			other.GetComponent<PlayerControls>().health -= 10f;
+			BigBoom();
 		}
 	}
 

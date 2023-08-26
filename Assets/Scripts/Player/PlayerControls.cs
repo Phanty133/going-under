@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +11,9 @@ public class PlayerControls : MonoBehaviour
 	public GameObject torpedoPrefab;
 	public float attackCooldown = 1f;
 	public GameObject cooldownIndicatorObj;
+	public float health = 100f;
+	public GameObject healthIndicatorObj;
+	public StatusBar healthBar => healthIndicatorObj.GetComponent<StatusBar>();
 
 	public delegate void OnPlayerMoved(Vector2 delta);
 	public OnPlayerMoved onPlayerMoved;
@@ -60,7 +62,6 @@ public class PlayerControls : MonoBehaviour
 
 	public void OnAttack()
 	{
-		if (!inputControl) return;
 		if (!canAttack) return;
 
 		GameObject torpedo = Instantiate(torpedoPrefab, transform.position, transform.rotation);
@@ -72,7 +73,6 @@ public class PlayerControls : MonoBehaviour
 
 	public void OnSonar()
 	{
-		if (!inputControl) return;
 		sonar.PingSonar();
 	}
 
@@ -132,5 +132,7 @@ public class PlayerControls : MonoBehaviour
 		{
 			sonar.SetSonarPlayer(transform.rotation.eulerAngles.z);
 		}
+		
+		healthBar.SetBarValue(health);
 	}
 }

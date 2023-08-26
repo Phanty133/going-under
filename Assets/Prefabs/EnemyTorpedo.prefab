@@ -140,6 +140,7 @@ MonoBehaviour:
   lifetime_s: 5
   fireClip: {fileID: 8300000, guid: 6d21497a5908cc59f8a6dffeb445d76a, type: 3}
   explosionObj: {fileID: 1087973102639982314, guid: 5f6248ef38a292a7a8d59ea92940d1ca, type: 3}
+  enemyTorp: 1
 --- !u!50 &-324544937271234651
 Rigidbody2D:
   serializedVersion: 4

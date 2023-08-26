@@ -11,8 +11,6 @@ public class MainMenuManager : MonoBehaviour
 	private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
-		Time.timeScale = 1f;
-		LevelManager.ResetLevels();
 	}
 
 	public void PlayClick()

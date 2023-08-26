@@ -7584,6 +7584,8 @@ MonoBehaviour:
   torpedoPrefab: {fileID: 8885103694915545989, guid: 31b75242c0bd189b9a62f30484abcf70, type: 3}
   attackCooldown: 1
   cooldownIndicatorObj: {fileID: 448353514}
+  health: 100
+  healthIndicatorObj: {fileID: 878593976}
   moveClip: {fileID: 8300000, guid: 5255d200745cf83babbd2949c4eb5462, type: 3}
   inputControl: 1
 --- !u!114 &730308196
@@ -10403,7 +10405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed84f48b5a3fab3858d936ebbea86d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelPassedObj: {fileID: 1313922755}
 --- !u!1 &1429504713
 GameObject:
   m_ObjectHideFlags: 0

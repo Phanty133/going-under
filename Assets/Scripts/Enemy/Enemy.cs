@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
     public float searchCooldown = 10f;
     public int squad = -1;
     private NavMeshAgent _agent => GetComponent<NavMeshAgent>();
+    public GameObject torpedoBase;
+    private GameObject _sonarManagerObj;
+    private SonarManager _sonarManager => _sonarManagerObj.GetComponent<SonarManager>();
+    private float _fireCooldown = 0f;
+    public float fireCooldown = 10f;
 
     void CheckPlayerSight()
     {
@@ -48,10 +53,19 @@ public class Enemy : MonoBehaviour
         // We can see it!
         _lastPlayerPos = _player.transform.position;
         StartPursuit();
+        if(_fireCooldown <= 0f) ShootTorpedoAt(_player.transform.position);
         if (_reportTimes > 0f) return;
         if (_lastPlayerPos == null) throw new Exception("Player Position null!");
         _radioManager.ReportPlayerPos((Vector2)_lastPlayerPos);
         _reportTimes = reportCooldown;
+    }
+
+    void ShootTorpedoAt(Vector2 direction)
+    {
+        GameObject torpedo = Instantiate(torpedoBase, transform.position, new Quaternion());
+        torpedo.transform.LookAt(new Vector3(direction.x, direction.y, torpedo.transform.position.z));
+        _sonarManager.CreateSonarTorpedo(torpedo, true);
+        _fireCooldown = fireCooldown;
     }
 
     void AlertStateChange(AlertState state)
@@ -74,6 +88,7 @@ public class Enemy : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         radioManagerObject = GameObject.FindGameObjectWithTag("RadioManager");
+        _sonarManagerObj = GameObject.FindGameObjectWithTag("SonarManager");
 
         _radioManager.onAlertStateChange += AlertStateChange;
     }
@@ -98,6 +113,15 @@ public class Enemy : MonoBehaviour
             if (_searchCooldown <= 0f) StartPatrol();
         }
         
+        if (_fireCooldown > 0f)
+        {
+            _fireCooldown -= Time.deltaTime;
+        }
+        
         _agent.speed = speed;
+    }
+    
+    void OnDestroy () {
+        _radioManager.DeleteEnemy(gameObject);
     }
 }

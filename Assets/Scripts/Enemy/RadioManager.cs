@@ -53,6 +53,11 @@ public class RadioManager : MonoBehaviour
         }
     }
 
+    public void DeleteEnemy(GameObject enemy)
+    {
+        _enemyDestinations.Remove(enemy);
+    }
+
     public Vector2 RequestNewPosition(GameObject requester)
     {
         Vector2 destPos = new();
@@ -65,6 +70,18 @@ public class RadioManager : MonoBehaviour
             {
                 RefreshSquadDestinations();
                 Vector2 destOffset = new(Random.Range(-5, 5), Random.Range(-5, 5));
+                if (!_squadDestinations.ContainsKey(enemy.squad))
+                {
+                    Vector2 squadDestPos = new();
+                    for (int i = 0; i < 100; i++)
+                    {
+                        squadDestPos = new(Random.Range(-50, 50), Random.Range(-50, 50));
+                        if (_enemyDestinations.All((k) =>
+                                Vector2.Distance(squadDestPos, k.Value) > k.Key.GetComponent<Enemy>().visibilityRange)) break;
+                    }
+
+                    _squadDestinations[enemy.squad] = squadDestPos;
+                }
                 destPos = _squadDestinations[enemy.squad] + destOffset;
                 while (Physics2D.OverlapPoint(destPos, LayerMask.GetMask("Enemy", "Terrain")))
                 {
