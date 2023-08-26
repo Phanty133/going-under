@@ -17,6 +17,9 @@ public class Torpedo : MonoBehaviour
 	GameObject sonarTorpedo = null;
 	RectTransform sonarRect;
 	RectTransform sonarCanvas;
+	
+	private GameObject PPobj;
+	private DynamicPP _dynamicPp => PPobj.GetComponent<DynamicPP>();
 
 	public void AddSonarTorpedo(GameObject sonarObj)
 	{
@@ -35,6 +38,7 @@ public class Torpedo : MonoBehaviour
 		} else if (other.gameObject.CompareTag("Player"))
 		{
 			other.GetComponent<PlayerControls>().health -= 10f;
+			StartCoroutine(_dynamicPp.TriggerPlayerDamaged());
 			BigBoom();
 		}
 	}
@@ -53,6 +57,8 @@ public class Torpedo : MonoBehaviour
 		Vector3 pos = transform.position;
 		pos.z = Camera.main.transform.position.z;
 		AudioSource.PlayClipAtPoint(fireClip, pos);
+        
+        PPobj = GameObject.FindGameObjectWithTag("ThePP");
 	}
 
 	private void Update()
