@@ -8,6 +8,7 @@ TagManager:
   - SonarManager
   - RadioManager
   - MusicManager
+  - ThePP
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerControls : MonoBehaviour
 
 	public AudioClip moveClip;
 	public bool inputControl = true;
+	public bool lockBackwards = true;
 
 	SonarManager sonar;
 	PlayerInput plyrInput;
@@ -84,6 +86,8 @@ public class PlayerControls : MonoBehaviour
 
 	private void Update()
 	{
+		float velMagnitude = rigidbody2d.velocity.sqrMagnitude;
+
 		if (inputControl)
 		{
 			Vector2 input = plyrInput.actions["Move"].ReadValue<Vector2>();
@@ -91,8 +95,16 @@ public class PlayerControls : MonoBehaviour
 			if (input.y != 0)
 			{
 				Vector2 fwd = transform.up * input.y;
-				Vector2 delta = accel_m_s2 * Time.deltaTime * fwd;
 
+				if (lockBackwards && input.y <= 0)
+				{
+					if (velMagnitude == 0 || Vector2.Dot(fwd, rigidbody2d.velocity) < 0)
+					{
+						fwd = Vector2.zero;
+					}
+				}
+
+				Vector2 delta = accel_m_s2 * Time.deltaTime * fwd;
 				rigidbody2d.AddForce(delta, ForceMode2D.Impulse);
 				sourceVolume = 1;
 			}
@@ -115,8 +127,6 @@ public class PlayerControls : MonoBehaviour
 		{
 			if (partSys.isPlaying) partSys.Stop();
 		}
-
-		float velMagnitude = rigidbody2d.velocity.sqrMagnitude;
 
 		if (velMagnitude > 0)
 		{
