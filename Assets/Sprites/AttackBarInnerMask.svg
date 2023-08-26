@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="15.122139mm"
+   height="55.34296mm"
+   viewBox="0 0 15.122139 55.34296"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="AttackBarInnerMask.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     inkscape:zoom="2.8364759"
+     inkscape:cx="41.777193"
+     inkscape:cy="75.445732"
+     inkscape:window-width="1920"
+     inkscape:window-height="1037"
+     inkscape:window-x="1920"
+     inkscape:window-y="128"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-154.78125,-106.89167)">
+    <path
+       id="path8-3"
+       style="fill:#8c8c8c;fill-opacity:1;stroke:none;stroke-width:0.286604;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+       d="m 155.29758,107.18247 c 7.68038,7.044 12.06189,17.04986 12.06191,27.54521 -0.0252,10.34101 -4.30337,20.20362 -11.80566,27.21625 h 3.15953 c 6.89506,-7.33742 10.86128,-17.06271 10.89311,-27.1931 -0.004,-10.28758 -4.06389,-20.18709 -11.12936,-27.5766 z"
+       sodipodi:nodetypes="ccccccc" />
+  </g>
+</svg>
