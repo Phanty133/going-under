@@ -21,6 +21,8 @@ public class Torpedo : MonoBehaviour
 	private GameObject PPobj;
 	private DynamicPP _dynamicPp => PPobj.GetComponent<DynamicPP>();
 
+	public float damage = 34f;
+
 	public void AddSonarTorpedo(GameObject sonarObj)
 	{
 		sonarTorpedo = sonarObj;
@@ -34,10 +36,10 @@ public class Torpedo : MonoBehaviour
 		{
 			Debug.Log("down");
 			BigBoom();
-			Destroy(other.gameObject);
+			other.GetComponent<Enemy>().DamageEnemy(damage);
 		} else if (other.gameObject.CompareTag("Player"))
 		{
-			other.GetComponent<PlayerControls>().health -= 10f;
+			other.GetComponent<PlayerControls>().health -= damage;
 			StartCoroutine(_dynamicPp.TriggerPlayerDamaged());
 			BigBoom();
 		}

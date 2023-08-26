@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -42,6 +43,13 @@ public class Enemy : MonoBehaviour
     private SonarManager _sonarManager => _sonarManagerObj.GetComponent<SonarManager>();
     private float _fireCooldown = 0f;
     public float fireCooldown = 10f;
+    public float health = 100f;
+
+    public void DamageEnemy(float damage)
+    {
+        health -= damage;
+        if (health <= 0f) Destroy(gameObject);
+    }
 
     void CheckPlayerSight()
     {

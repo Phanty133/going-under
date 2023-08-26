@@ -23,6 +23,8 @@ public class PlayerControls : MonoBehaviour
 	public bool inputControl = true;
 	public bool lockBackwards = true;
 
+	public GameObject levelFailed;
+
 	SonarManager sonar;
 	PlayerInput plyrInput;
 	Rigidbody2D rigidbody2d;
@@ -144,5 +146,6 @@ public class PlayerControls : MonoBehaviour
 		}
 		
 		healthBar.SetBarValue(health);
+		if (health <= 0) levelFailed.SetActive(true);
 	}
 }
