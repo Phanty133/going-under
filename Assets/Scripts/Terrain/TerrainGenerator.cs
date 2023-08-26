@@ -224,6 +224,7 @@ public class TerrainGenerator : MonoBehaviour
 
 	    StartCoroutine(navmeshBaker.GenerateMesh());
 	    StartCoroutine(GetComponent<EnemyGen>().GenerateEnemies());
+	    StartCoroutine(GetComponent<GoalGenerator>().SpawnGoals());
     }
     
     void OnDrawGizmos()

@@ -1953,6 +1953,7 @@ GameObject:
   - component: {fileID: 448485434}
   - component: {fileID: 448485433}
   - component: {fileID: 448485432}
+  - component: {fileID: 448485435}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -1981,7 +1982,7 @@ MonoBehaviour:
     - units:
       - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
       - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
-  container: {fileID: 0}
+  container: {fileID: 1445975016}
 --- !u!114 &448485433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2018,6 +2019,20 @@ Transform:
   - {fileID: 1798631671}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &448485435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448485431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 724d1fad7b3e407d49173c04b5653294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sub: {fileID: 730308191}
+  end: {fileID: 769909875}
 --- !u!1 &477725545
 GameObject:
   m_ObjectHideFlags: 0
