@@ -1982,6 +1982,65 @@ MonoBehaviour:
     - units:
       - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
       - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+  - squads:
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+  - squads:
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+      - {fileID: 145373680724470351, guid: 8ef2c5af1f0fef85b873fc5d8aa84d52, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+    - units:
+      - {fileID: 2151964545839771461, guid: bdc14e5729054808598da7b561cfb0fa, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
+      - {fileID: 5290281662343181705, guid: 6c1229cb227cca39aadea4c860a95585, type: 3}
   container: {fileID: 1445975016}
 --- !u!114 &448485433
 MonoBehaviour:

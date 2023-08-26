@@ -44,6 +44,7 @@ public class Enemy : MonoBehaviour
     private float _fireCooldown = 0f;
     public float fireCooldown = 10f;
     public float health = 100f;
+    public float damage = 34f;
 
     public void DamageEnemy(float damage)
     {
@@ -61,7 +62,7 @@ public class Enemy : MonoBehaviour
         // We can see it!
         _lastPlayerPos = _player.transform.position;
         StartPursuit();
-        if(_fireCooldown <= 0f) ShootTorpedoAt(_player.transform.position);
+        if(fireCooldown != -1f && _fireCooldown <= 0f) ShootTorpedoAt(_player.transform.position);
         if (_reportTimes > 0f) return;
         if (_lastPlayerPos == null) throw new Exception("Player Position null!");
         _radioManager.ReportPlayerPos((Vector2)_lastPlayerPos);
@@ -72,6 +73,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject torpedo = Instantiate(torpedoBase, transform.position, new Quaternion());
         torpedo.transform.LookAt(new Vector3(direction.x, direction.y, torpedo.transform.position.z));
+        torpedo.GetComponent<Torpedo>().damage = damage;
         _sonarManager.CreateSonarTorpedo(torpedo, true);
         _fireCooldown = fireCooldown;
     }

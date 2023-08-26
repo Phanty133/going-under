@@ -101,13 +101,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   radioManagerObject: {fileID: 0}
-  visibilityRange: 2
-  speed: 1
+  visibilityRange: 3
+  speed: 3
   reportCooldown: 3
   searchCooldown: 10
   squad: -1
   torpedoBase: {fileID: 8885103694915545989, guid: be3bb08a5b2e01d64abb4bfc4f9d3a81, type: 3}
-  fireCooldown: 10
+  fireCooldown: 2
+  health: 250
+  damage: 50
 --- !u!195 &6887462324402752091
 NavMeshAgent:
   m_ObjectHideFlags: 0
