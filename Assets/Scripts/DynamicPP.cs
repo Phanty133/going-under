@@ -48,15 +48,8 @@ public class DynamicPP : MonoBehaviour
 		ca.intensity.value = 0f;
 	}
 
-	IEnumerator testdmg()
-	{
-		yield return new WaitForSeconds(3f);
-		PPTriggerPlayerDamaged();
-	}
-
 	private void Start()
 	{
 		ppVolume = GetComponent<Volume>();
-		StartCoroutine(testdmg());
 	}
 }
