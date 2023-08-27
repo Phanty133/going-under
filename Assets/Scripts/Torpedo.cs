@@ -43,6 +43,7 @@ public class Torpedo : MonoBehaviour
 			if (other.gameObject.CompareTag("Player"))
 			{
 				other.GetComponent<PlayerControls>().health -= damage;
+				LevelStatsTracker.LevelStats.hitsTaken++;
 				DynamicPP.PPTriggerPlayerDamaged();
 				BigBoom();
 			}

@@ -114,6 +114,7 @@ public class SonarManager : MonoBehaviour
 	{
 		if (scanner.IsScanning) return;
 
+		LevelStatsTracker.LevelStats.sonarsPinged++;
 		pingCamera = Instantiate(pingCameraPrefab, null).GetComponent<Camera>();
 		pingCamera.transform.position = Camera.main.transform.position;
 		ui.TransitionTerrainOverlay();

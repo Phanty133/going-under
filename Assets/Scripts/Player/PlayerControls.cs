@@ -70,6 +70,7 @@ public class PlayerControls : MonoBehaviour
 
 		GameObject torpedo = Instantiate(torpedoPrefab, transform.position, transform.rotation);
 		sonar.CreateSonarTorpedo(torpedo);
+		LevelStatsTracker.LevelStats.torpedosFired++;
 
 		canAttack = false;
 		StartCoroutine(AttackCooldown());
@@ -148,7 +149,7 @@ public class PlayerControls : MonoBehaviour
 		{
 			sonar.SetSonarPlayer(transform.rotation.eulerAngles.z);
 		}
-		
+
 		healthBar.SetBarValue(health);
 		if (health <= 0) levelFailed.SetActive(true);
 	}

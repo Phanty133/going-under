@@ -29,6 +29,7 @@ public class LevelManager : MonoBehaviour
 
 		Time.timeScale = 1f;
 		levelTimer = 0;
+		LevelStatsTracker.ResetStats();
 	}
 
 	private void Update()
@@ -78,16 +79,10 @@ public class LevelManager : MonoBehaviour
 
 		Time.timeScale = 0;
 		Level++;
-		passedMenuManager.SetStats(new LevelPassedStats()
-		{
-			timeTaken_s = levelTimer,
-			torpedosFired = 5,
-			hitsTaken = 1,
-			sonarsPinged = 420,
-			subsKilled = 2,
-			patrolsKilled = 3,
-			destroyersKilled = 4
-		});
+		var trackedStats = LevelStatsTracker.LevelStats;
+		trackedStats.timeTaken_s = levelTimer;
+
+		passedMenuManager.SetStats(trackedStats);
 		passedMenuManager.gameObject.SetActive(true);
 	}
 }

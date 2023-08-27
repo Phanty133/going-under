@@ -50,7 +50,23 @@ public class Enemy : MonoBehaviour
     public void DamageEnemy(float damage)
     {
         health -= damage;
-        if (health <= 0f) Destroy(gameObject);
+        if (health <= 0f)
+        {
+            switch (type)
+            {
+                case EnemyType.SUB:
+                    LevelStatsTracker.LevelStats.subsKilled++;
+                    break;
+                case EnemyType.PATROL:
+                    LevelStatsTracker.LevelStats.patrolsKilled++;
+                    break;
+                case EnemyType.DESTROYER:
+                    LevelStatsTracker.LevelStats.destroyersKilled++;
+                    break;
+            }
+
+            Destroy(gameObject);
+        }
     }
 
     void CheckPlayerSight()
