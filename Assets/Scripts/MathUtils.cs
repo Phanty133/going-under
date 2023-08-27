@@ -32,5 +32,12 @@ public static class MathUtils
 	{
 		return Random.value > 0.5f ? 1 : -1;
 	}
+
+	public static Vector2 RandomInRing(float minRadius, float maxRadius)
+	{
+		float r = Random.Range(minRadius, maxRadius);
+		float theta = Random.Range(0, 2 * Mathf.PI);
+		return new Vector2(r * Mathf.Cos(theta), r * Mathf.Sin(theta));
+	}
 }
 

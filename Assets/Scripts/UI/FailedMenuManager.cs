@@ -10,7 +10,7 @@ public class FailedMenuManager : MonoBehaviour
 
 	private void Start()
 	{
-		titleObj.GetComponent<TMP_Text>().text = string.Format("Level {0} Passed", LevelManager.Level);
+		titleObj.GetComponent<TMP_Text>().text = string.Format("Level {0} failed", LevelManager.Level);
 	}
 
 	public static void OnRetry()

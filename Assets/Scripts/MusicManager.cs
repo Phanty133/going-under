@@ -10,9 +10,13 @@ public class MusicManager : MonoBehaviour
 	public float battleFadeOut_s = 5f;
 	public float ambientVolume = 0.5f;
 	public float battleVolume = 0.5f;
+	public float rollAmbientChance = 0.10f;
+	public float rollTime_s = 10f;
 
 	public List<AudioClip> ambientMusic;
 	public List<AudioClip> battleMusic;
+
+	private float rollTimer_s = 0;
 
 	public bool PlayingBattle
 	{
@@ -35,6 +39,38 @@ public class MusicManager : MonoBehaviour
 	bool _playingAmbient = false;
 	int? track = null;
 	AudioSource audioSource;
+
+	public static void StartBattleMusic()
+	{
+		MusicManager musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
+		if (musicManager.PlayingBattle) return;
+
+		musicManager.StartCoroutine(musicManager.PlayBattle());
+	}
+
+	public static void StopBattleMusic()
+	{
+		MusicManager musicManager = GameObject.FindGameObjectWithTag("MusicManager").GetComponent<MusicManager>();
+		musicManager.StartCoroutine(musicManager.StopBattle());
+	}
+
+	private void Update()
+	{
+		if (PlayingAmbient || PlayingBattle) return;
+
+		rollTimer_s += Time.deltaTime;
+
+		if (rollTimer_s >= rollTime_s)
+		{
+			rollTimer_s = 0;
+			if (Random.value < rollAmbientChance) StartCoroutine(PlayAmbient());
+		}
+	}
+
+	private void Awake()
+	{
+		DontDestroyOnLoad(gameObject);
+	}
 
 	private void Start()
 	{

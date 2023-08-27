@@ -17,19 +17,43 @@ public class SonarManager : MonoBehaviour
 	RectTransform canvasRect;
 	AudioSource audioSource;
 
-	private void Start()
+	private void InitScanner()
 	{
-		canvasRect = GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>();
-
-		scanner = scannerObj.GetComponent<SonarScan>();
 		scanner.radarScanEnemyHit += OnRadarEnemyHit;
 		scanner.radarScanTerrainHit += OnRadarTerrainHit;
 		scanner.radarScanIterDone += OnRadarScanIterDone;
 		scanner.radarScanDone += OnRadarScanDone;
 		scanner.sonarPreparePingStep += OnSonarPreparePingStep;
+	}
+
+	private bool TryFindScanner()
+	{
+		GameObject obj = GameObject.FindGameObjectWithTag("SonarScanner");
+
+		if (obj != null)
+		{
+			scanner = obj.GetComponent<SonarScan>();
+			InitScanner();
+		}
+
+		return obj != null;
+	}
+
+	private void Start()
+	{
+		canvasRect = GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>();
+		TryFindScanner();
 
 		ui = sonarUIObj.GetComponent<SonarUI>();
 		audioSource = GetComponent<AudioSource>();
+	}
+
+	private void Update()
+	{
+		if (scanner == null)
+		{
+			if (!TryFindScanner()) return;
+		}
 	}
 
 	private void OnSonarPreparePingStep(float prevRadius_m, float curRadius_m)

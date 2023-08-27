@@ -9,6 +9,8 @@ TagManager:
   - RadioManager
   - MusicManager
   - ThePP
+  - GoalIndicator
+  - SonarScanner
   layers:
   - Default
   - TransparentFX

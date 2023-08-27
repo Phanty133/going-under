@@ -10,14 +10,35 @@ public class TerrainFollow : MonoBehaviour
 	RectTransform rectTransform;
 	RectTransform canvasRect;
 
-	void Awake()
+	bool TryFindPlayer()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+
+		if (player != null) InitPlayer();
+		return player != null;
+	}
+
+	void InitPlayer()
+	{
 		playerControls = player.GetComponent<PlayerControls>();
 		playerControls.onPlayerMoved += OnPlayerMove;
+	}
+
+	void Awake()
+	{
+		TryFindPlayer();
 
 		rectTransform = GetComponent<RectTransform>();
 		canvasRect = GameObject.FindGameObjectWithTag("Canvas").GetComponent<RectTransform>();
+	}
+
+	private void Update()
+	{
+		if (player == null)
+		{
+			bool plyrFound = TryFindPlayer();
+			if (!plyrFound) return;
+		}
 	}
 
 	void OnPlayerMove(Vector2 deltaWorldPos)

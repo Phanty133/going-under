@@ -95,7 +95,7 @@ public class SonarScan : MonoBehaviour
 		}
 	}
 
-	private void Start()
+	private void Awake()
 	{
 		enemyMask = 1 << LayerMask.NameToLayer("Enemy");
 		terrainMask = 1 << LayerMask.NameToLayer("Terrain");

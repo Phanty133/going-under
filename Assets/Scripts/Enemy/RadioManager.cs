@@ -99,7 +99,8 @@ public class RadioManager : MonoBehaviour
                             Vector2.Distance(destPos, k.Value) > k.Key.GetComponent<Enemy>().visibilityRange)) break;
                 }
             }
-        } else if (alertState == AlertState.CAUTION)
+        }
+        else if (alertState == AlertState.CAUTION)
         {
             for (int i = 0; i < 100; i++)
             {
@@ -113,13 +114,14 @@ public class RadioManager : MonoBehaviour
                 if (_enemyDestinations.All((k) =>
                         Vector2.Distance(destPos, k.Value) > k.Key.GetComponent<Enemy>().visibilityRange)) break;
             }
-        } else if (alertState == AlertState.ALERT)
+        }
+        else if (alertState == AlertState.ALERT)
         {
             if (_lastReportedPlayerPos != null) destPos = (Vector2)(_lastReportedPlayerPos);
         }
 
         _enemyDestinations[requester] = destPos;
-        
+
         return destPos;
     }
 
@@ -132,6 +134,7 @@ public class RadioManager : MonoBehaviour
 
     private void RaiseAlarm()
     {
+        MusicManager.StartBattleMusic();
         _alertCooldown = alertCooldown;
         alertState = AlertState.ALERT;
         onAlertStateChange.Invoke(alertState);
@@ -146,6 +149,7 @@ public class RadioManager : MonoBehaviour
 
     private void RaiseCalm()
     {
+        MusicManager.StopBattleMusic();
         alertState = AlertState.CALM;
         onAlertStateChange.Invoke(alertState);
     }
@@ -162,7 +166,7 @@ public class RadioManager : MonoBehaviour
         if (_alertCooldown > 0f)
         {
             _alertCooldown -= Time.fixedDeltaTime;
-            if(_alertCooldown <= 0f) ElapseTimer();
+            if (_alertCooldown <= 0f) ElapseTimer();
         }
     }
 }

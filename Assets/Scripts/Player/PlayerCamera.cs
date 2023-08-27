@@ -8,14 +8,22 @@ public class PlayerCamera : MonoBehaviour
 
 	PlayerControls playerControls;
 
-	private void Start()
+	bool TryFindPlayer()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
-		playerControls = player.GetComponent<PlayerControls>();
+		if (player != null) playerControls = player.GetComponent<PlayerControls>();
+
+		return player != null;
 	}
 
 	private void Update()
 	{
+		if (player == null)
+		{
+			bool plyrFound = TryFindPlayer();
+			if (!plyrFound) return;
+		}
+
 		if (playerControls.inputControl)
 		{
 			transform.position = new Vector3(

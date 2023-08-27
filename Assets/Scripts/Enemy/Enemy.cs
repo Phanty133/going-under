@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     private RadioManager _radioManager => radioManagerObject.GetComponent<RadioManager>();
     public float visibilityRange;
     public float speed;
-    
+
     private Vector2? _lastPlayerPos = null;
     public float reportCooldown = 3f;
     private float _reportTimes = 0f;
@@ -61,8 +61,10 @@ public class Enemy : MonoBehaviour
                 LayerMask.GetMask("Terrain", "Enemy")).Length > 1) return; // If we hit anything other than ourselves
         // We can see it!
         _lastPlayerPos = _player.transform.position;
+
         StartPursuit();
-        if(fireCooldown != -1f && _fireCooldown <= 0f) ShootTorpedoAt(_player.transform.position);
+
+        if (fireCooldown != -1f && _fireCooldown <= 0f) ShootTorpedoAt(_player.transform.position);
         if (_reportTimes > 0f) return;
         if (_lastPlayerPos == null) throw new Exception("Player Position null!");
         _radioManager.ReportPlayerPos((Vector2)_lastPlayerPos);
@@ -76,6 +78,7 @@ public class Enemy : MonoBehaviour
         torpedo.GetComponent<Torpedo>().damage = damage;
         _sonarManager.CreateSonarTorpedo(torpedo, true);
         _fireCooldown = fireCooldown;
+        Debug.Log("enemy shoot torp");
     }
 
     void AlertStateChange(AlertState state)
@@ -94,44 +97,86 @@ public class Enemy : MonoBehaviour
         _state = EnemyStates.PATROL;
     }
 
-    private void Start()
+    bool TryFindPlayer()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+
+        return _player != null;
+    }
+
+    private void Start()
+    {
+        TryFindPlayer();
         radioManagerObject = GameObject.FindGameObjectWithTag("RadioManager");
         _sonarManagerObj = GameObject.FindGameObjectWithTag("SonarManager");
 
         _radioManager.onAlertStateChange += AlertStateChange;
+        _agent.updateUpAxis = false;
+        _agent.updateRotation = false;
     }
+
+    private void RotateTowardsVelocity()
+    {
+        Vector2 velocity = _agent.velocity;
+        float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+
+    Vector3? pursuitOffset = null;
 
     private void Update()
     {
+        if (_player == null)
+        {
+            bool plyrFound = TryFindPlayer();
+            if (!plyrFound) return;
+        }
+
+        RotateTowardsVelocity();
         CheckPlayerSight();
 
         if (_reportTimes > 0f) _reportTimes = Mathf.Max(_reportTimes - Time.deltaTime, 0f);
-        
+
         if (_destination == null || Vector2.Distance(transform.position, (Vector2)_destination) < 0.5f)
+        {
             _destination = _radioManager.RequestNewPosition(gameObject);
-        if (_state == EnemyStates.PATROL) _agent.SetDestination((Vector3)_destination);
-        if (_state == EnemyStates.PURSUIT) 
-            _agent.SetDestination((Vector3)_lastPlayerPos 
-                                  + new Vector3(MathUtils.RandomNegative() * Random.Range(visibilityRange * 0.25f, visibilityRange), 
-                                      MathUtils.RandomNegative() * Random.Range(visibilityRange * 0.25f, visibilityRange)));
+        }
+
+
+        if (_state == EnemyStates.PURSUIT)
+        {
+            // Chance to change the offset every frame
+            if (Random.value < 0.01) pursuitOffset = null;
+
+            if (!pursuitOffset.HasValue)
+            {
+                pursuitOffset = MathUtils.RandomInRing(visibilityRange * 0.75f, visibilityRange);
+            }
+
+            Vector3 newDest = (Vector3)_lastPlayerPos + pursuitOffset.Value;
+            _agent.SetDestination(newDest);
+        }
+        else if (_state == EnemyStates.PATROL)
+        {
+            _agent.SetDestination((Vector3)_destination);
+        }
 
         if (_searchCooldown > 0f)
         {
             _searchCooldown -= Time.deltaTime;
             if (_searchCooldown <= 0f) StartPatrol();
         }
-        
+
         if (_fireCooldown > 0f)
         {
             _fireCooldown -= Time.deltaTime;
         }
-        
+
         _agent.speed = speed;
     }
-    
-    void OnDestroy () {
+
+    void OnDestroy()
+    {
         _radioManager.DeleteEnemy(gameObject);
     }
 }

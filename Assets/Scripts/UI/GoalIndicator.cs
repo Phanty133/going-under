@@ -6,22 +6,34 @@ public class GoalIndicator : MonoBehaviour
 {
 	public GameObject goal;
 
-	GameObject playerObj;
+	GameObject player;
+
+	bool TryFindPlayer()
+	{
+		player = GameObject.FindGameObjectWithTag("Player");
+
+		return player != null;
+	}
 
 	private void Start()
 	{
-		playerObj = GameObject.FindGameObjectWithTag("Player");
+		TryFindPlayer();
 	}
 
 	private void PointTowardsGoal()
 	{
-		Vector2 goalDir = goal.transform.position - playerObj.transform.position;
+		Vector2 goalDir = goal.transform.position - player.transform.position;
 		float goalAngle = Mathf.Atan2(goalDir.y, goalDir.x) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.Euler(0, 0, goalAngle);
 	}
 
 	private void Update()
 	{
+		if (player == null)
+		{
+			bool plyrFound = TryFindPlayer();
+			if (!plyrFound) return;
+		}
 		PointTowardsGoal();
 	}
 }

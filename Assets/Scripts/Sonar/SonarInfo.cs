@@ -132,6 +132,7 @@ public class SonarInfo : MonoBehaviour
 			case SonarPointType.OBJECT:
 				GameObject obj = Instantiate(pt.prefab, objectContainer.transform);
 				obj.GetComponent<RectTransform>().anchoredPosition = pt.pos - 0.5f * canvasRect.sizeDelta;
+				obj.transform.rotation = pt.col.transform.rotation;
 				pt.obj = obj.GetComponent<SonarObject>();
 
 				break;

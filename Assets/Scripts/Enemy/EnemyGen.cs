@@ -42,17 +42,11 @@ public class EnemyGen : MonoBehaviour
                     offset = new(Random.Range(-5, 5), Random.Range(-5, 5));
                     yield return null;
                 }
-                GameObject obj = Instantiate(unit, pos + offset, new Quaternion(), container.transform);
+                GameObject obj = Instantiate(unit, pos + offset, Quaternion.identity, container.transform);
                 obj.GetComponent<Enemy>().squad = squadNum;
             }
 
             squadNum++;
         }
-    } 
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
