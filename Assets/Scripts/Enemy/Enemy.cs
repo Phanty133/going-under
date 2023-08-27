@@ -22,6 +22,7 @@ public enum EnemyStates
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
+    public GameObject explosionPrefab;
     public EnemyType type;
     public GameObject radioManagerObject;
     private RadioManager _radioManager => radioManagerObject.GetComponent<RadioManager>();
@@ -177,6 +178,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
+        Instantiate(explosionPrefab, transform.position, new Quaternion());
         _radioManager.DeleteEnemy(gameObject);
     }
 }

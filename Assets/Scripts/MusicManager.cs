@@ -70,6 +70,8 @@ public class MusicManager : MonoBehaviour
 	private void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
+
+		if (PlayingBattle) StartCoroutine(StopBattle());
 	}
 
 	private void Start()
@@ -83,7 +85,7 @@ public class MusicManager : MonoBehaviour
 		Debug.Log(string.Format("Stopping {0}", audioSource.clip.name));
 		float startVol = audioSource.volume;
 
-		while (audioSource.volume > 0)
+		while (audioSource.volume > 0.025f)
 		{
 			audioSource.volume -= startVol * Time.deltaTime / fadeTime_s;
 			yield return null;
@@ -100,7 +102,7 @@ public class MusicManager : MonoBehaviour
 		audioSource.Play();
 		audioSource.volume = 0;
 
-		while (audioSource.volume <= targetVolume)
+		while (audioSource.volume <= targetVolume - 0.025f)
 		{
 			audioSource.volume += targetVolume * Time.deltaTime / fadeTime_s;
 			yield return null;

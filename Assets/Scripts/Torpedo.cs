@@ -32,12 +32,18 @@ public class Torpedo : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
+		if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+		{
+			BigBoom();
+			return;
+		}
+
 		if (enemyTorp)
 		{
 			if (other.gameObject.CompareTag("Player"))
 			{
 				other.GetComponent<PlayerControls>().health -= damage;
-				StartCoroutine(_dynamicPp.TriggerPlayerDamaged());
+				DynamicPP.PPTriggerPlayerDamaged();
 				BigBoom();
 			}
 
