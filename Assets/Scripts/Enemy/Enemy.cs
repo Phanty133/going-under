@@ -10,7 +10,8 @@ public enum EnemyType
 {
     SUB,
     PATROL,
-    DESTROYER
+    DESTROYER,
+    BOSS
 }
 
 public enum EnemyStates
@@ -47,6 +48,8 @@ public class Enemy : MonoBehaviour
     public float health = 100f;
     public float damage = 34f;
 
+    public EnemyStates State => _state;
+
     public void DamageEnemy(float damage)
     {
         health -= damage;
@@ -65,7 +68,18 @@ public class Enemy : MonoBehaviour
                     break;
             }
 
-            Destroy(gameObject);
+            if (type == EnemyType.BOSS)
+            {
+                Debug.Log("boss dead");
+                _fireCooldown = 100000000000;
+                speed = 0;
+
+                StartCoroutine(GetComponent<Boss>().TriggerDefeatSeq());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

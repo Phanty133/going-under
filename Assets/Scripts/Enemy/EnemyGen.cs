@@ -20,9 +20,30 @@ public class EnemyGen : MonoBehaviour
 {
     public List<Level> squadLayouts;
     public GameObject container;
+    public GameObject bossPrefab;
+
+    public IEnumerator GenerateBossLevel()
+    {
+        Vector2 pos = new(Random.Range(-50, 50), Random.Range(-50, 50));
+
+        while (Physics2D.OverlapPoint(pos, LayerMask.GetMask("Enemy", "Terrain")))
+        {
+            pos = new(Random.Range(-50, 50), Random.Range(-50, 50));
+            yield return null;
+        }
+
+        GameObject obj = Instantiate(bossPrefab, pos, Quaternion.identity, container.transform);
+    }
 
     public IEnumerator GenerateEnemies()
     {
+        if (LevelManager.Level >= squadLayouts.Count)
+        {
+            yield return GenerateBossLevel();
+            LevelManager.BossLevel = true;
+            yield break;
+        }
+
         Level level = squadLayouts[LevelManager.Level];
 
         int squadNum = 1;

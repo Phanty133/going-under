@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4021000174874487741}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0075, y: -0.0076, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -670,7 +670,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 0.25
     donutRadius: 0.2
-    m_Position: {x: 0, y: -0.4, z: 0}
+    m_Position: {x: 0, y: -0.35, z: 0}
     m_Rotation: {x: 90, y: 0, z: 0}
     m_Scale: {x: 0.25, y: 1, z: 1}
     placementMode: 0
@@ -4932,8 +4932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316242603059447edbc2b89df86193d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  accel_m_s2: 2.5
-  angular_accel_deg_s2: 5
+  accel_m_s2: 2
+  angular_accel_deg_s2: 4
   audioFadeout_s: 1
   torpedoPrefab: {fileID: 8885103694915545989, guid: 31b75242c0bd189b9a62f30484abcf70, type: 3}
   attackCooldown: 1
@@ -5004,7 +5004,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.35, y: 1.85}
+  m_Size: {x: 0.26, y: 1.39}
   m_Direction: 0
 --- !u!114 &4717304947929018462
 MonoBehaviour:

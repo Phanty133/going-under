@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public class LevelManager : MonoBehaviour
 	static int _level = 0;
 	static PassedMenuManager passedMenuManager;
 	static float levelTimer = 0f;
+	public static bool BossLevel = false;
 
 	public static void ResetLevels()
 	{
@@ -37,44 +37,47 @@ public class LevelManager : MonoBehaviour
 		levelTimer += Time.deltaTime;
 	}
 
-	public static IEnumerator NextLevel()
+	public static IEnumerator NextLevel(bool skipOffScreen = false)
 	{
 		// Overrides player controls, makes the player go off-screen, and changes to the next level
 		GameObject player = GameObject.FindGameObjectWithTag("Player");
 		PlayerControls playerControls = player.GetComponent<PlayerControls>();
 		playerControls.inputControl = false;
 
-		// Move the player off-screen
-		bool playerOnScreen = true;
-		float thresh = 0.1f;
-		float TIMEOUT = 7f; // # of seconds to wait until forcing the next level dialog to appear
-		float timer = 0f;
-
-		while (playerOnScreen)
+		if (!skipOffScreen)
 		{
-			if (timer > TIMEOUT)
-			{
-				Debug.LogWarning("Player off-screen timeout");
-				break;
-			}
+			// Move the player off-screen
+			bool playerOnScreen = true;
+			float thresh = 0.1f;
+			float TIMEOUT = 7f; // # of seconds to wait until forcing the next level dialog to appear
+			float timer = 0f;
 
-			Vector2 plyrScreenPos = Camera.main.WorldToViewportPoint(player.transform.position);
-			if (
-				plyrScreenPos.x < -thresh
-				|| plyrScreenPos.x > 1 + thresh
-				|| plyrScreenPos.y < -thresh
-				|| plyrScreenPos.y > 1 + thresh
-			)
+			while (playerOnScreen)
 			{
-				playerOnScreen = false;
-			}
-			else
-			{
-				playerControls.SetPos(player.transform.position + 2.5f * Time.deltaTime * player.transform.up);
-			}
+				if (timer > TIMEOUT)
+				{
+					Debug.LogWarning("Player off-screen timeout");
+					break;
+				}
 
-			timer += Time.deltaTime;
-			yield return null;
+				Vector2 plyrScreenPos = Camera.main.WorldToViewportPoint(player.transform.position);
+				if (
+					plyrScreenPos.x < -thresh
+					|| plyrScreenPos.x > 1 + thresh
+					|| plyrScreenPos.y < -thresh
+					|| plyrScreenPos.y > 1 + thresh
+				)
+				{
+					playerOnScreen = false;
+				}
+				else
+				{
+					playerControls.SetPos(player.transform.position + 2.5f * Time.deltaTime * player.transform.up);
+				}
+
+				timer += Time.deltaTime;
+				yield return null;
+			}
 		}
 
 		Time.timeScale = 0;

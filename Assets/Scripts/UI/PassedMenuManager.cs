@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public struct LevelPassedStats
@@ -25,10 +26,19 @@ public class PassedMenuManager : MonoBehaviour
 	public GameObject subsObj;
 	public GameObject patrolsObj;
 	public GameObject destroyersObj;
+	public GameObject btnObj;
 
 	private void Start()
 	{
-		titleObj.GetComponent<TMP_Text>().text = string.Format("Level {0} Passed", LevelManager.Level);
+		if (LevelManager.BossLevel)
+		{
+			titleObj.GetComponent<TMP_Text>().text = "You have destroyed the enemy carrier!\nThanks for playing.";
+			btnObj.GetComponent<TMP_Text>().text = "Back to Main Menu";
+		}
+		else
+		{
+			titleObj.GetComponent<TMP_Text>().text = string.Format("Level {0} Passed", LevelManager.Level);
+		}
 	}
 
 	public void SetStats(LevelPassedStats stats)
@@ -44,6 +54,13 @@ public class PassedMenuManager : MonoBehaviour
 
 	public static void OnContinue()
 	{
-		SceneManager.LoadScene("GameLevel");
+		if (LevelManager.BossLevel)
+		{
+			SceneManager.LoadScene("MainMenu");
+		}
+		else
+		{
+			SceneManager.LoadScene("GameLevel");
+		}
 	}
 }

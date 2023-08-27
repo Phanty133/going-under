@@ -11,6 +11,7 @@ TagManager:
   - ThePP
   - GoalIndicator
   - SonarScanner
+  - Boss
   layers:
   - Default
   - TransparentFX
