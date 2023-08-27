@@ -88,14 +88,20 @@ public class Enemy : MonoBehaviour
         _reportTimes = reportCooldown;
     }
 
-    void ShootTorpedoAt(Vector2 direction)
+    void ShootTorpedoAt(Vector2 target)
     {
-        GameObject torpedo = Instantiate(torpedoBase, transform.position, new Quaternion());
-        torpedo.transform.LookAt(new Vector3(direction.x, direction.y, torpedo.transform.position.z));
-        torpedo.GetComponent<Torpedo>().damage = damage;
-        _sonarManager.CreateSonarTorpedo(torpedo, true);
+        GameObject torpedoObj = Instantiate(torpedoBase, transform.position, Quaternion.identity);
+
+        Vector2 delta = target - (Vector2)transform.position;
+        float angle = Mathf.Atan2(delta.y, delta.x) * Mathf.Rad2Deg;
+        torpedoObj.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        torpedoObj.transform.Rotate(0, 0, -90);
+
+        Torpedo torpedo = torpedoObj.GetComponent<Torpedo>();
+        torpedo.damage = damage;
+        _sonarManager.CreateSonarTorpedo(torpedoObj, true);
+
         _fireCooldown = fireCooldown;
-        Debug.Log("enemy shoot torp");
     }
 
     void AlertStateChange(AlertState state)

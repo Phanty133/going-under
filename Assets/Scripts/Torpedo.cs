@@ -53,7 +53,6 @@ public class Torpedo : MonoBehaviour
 
 		if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
 		{
-			Debug.Log("down");
 			BigBoom();
 			other.GetComponent<Enemy>().DamageEnemy(damage);
 		}
