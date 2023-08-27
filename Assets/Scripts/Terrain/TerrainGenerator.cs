@@ -8,6 +8,7 @@ using Debug = System.Diagnostics.Debug;
 
 public class TerrainGenerator : MonoBehaviour
 {
+	public GameObject terrainGenDialog;
 	public int width;
 	public int height;
 	[Tooltip("Amount of \"walkers\", a higher amount will result in the map being emptier.")]
@@ -40,6 +41,8 @@ public class TerrainGenerator : MonoBehaviour
 
 	private IEnumerator GenerateMap()
 	{
+		terrainGenDialog.SetActive(true);
+
 		while (_emptyTiles < minimumTiles)
 		{
 			_emptyTiles = 0;
@@ -222,11 +225,12 @@ public class TerrainGenerator : MonoBehaviour
 			}
 		}
 
-		GoalGenerator goalGenerator = GetComponent<GoalGenerator>();
-
 		StartCoroutine(navmeshBaker.GenerateMesh());
-		StartCoroutine(GetComponent<EnemyGen>().GenerateEnemies());
-		StartCoroutine(goalGenerator.SpawnGoals());
+
+		yield return GetComponent<EnemyGen>().GenerateEnemies();
+		yield return GetComponent<GoalGenerator>().SpawnGoals();
+
+		terrainGenDialog.SetActive(false);
 	}
 
 	// void OnDrawGizmos()

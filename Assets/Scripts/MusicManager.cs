@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MusicManager : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class MusicManager : MonoBehaviour
 
 	private void Update()
 	{
+		if (SceneManager.GetActiveScene().name == "MainMenu") return;
 		if (PlayingAmbient || PlayingBattle) return;
 
 		rollTimer_s += Time.deltaTime;
@@ -69,7 +71,7 @@ public class MusicManager : MonoBehaviour
 
 	private void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
+		DontDestroyOnLoad(transform.gameObject);
 
 		if (PlayingBattle) StartCoroutine(StopBattle());
 	}
